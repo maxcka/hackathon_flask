@@ -35,7 +35,7 @@ def search(request):
     # if(endTime == None):
     #     endTime = datetime.time(23,59,59)
 
-    events = [] #list of json items
+    events = [] #list of json items - needs to be edited once database has been created
     filtered = []
     for event in events:
         if (event.location in locations and event.type in types and event.date in dates):
