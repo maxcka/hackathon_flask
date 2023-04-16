@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <h1>Welcome to {{ name }}!</h1>
+    <button onclick="location.href='{{ url_for('events') }}'">Search for events</button>
+    <br>
+    <br>
+    <button onclick="location.href='{{ url_for('create') }}'">Create an event</button>
+  </body>
+</html>
