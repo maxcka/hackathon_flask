@@ -12,8 +12,11 @@ pool = ConnectionPool(
 
 def query(query: str, args: list = []):
     with pool.connection() as conn:
-        return conn.execute(query, args).fetchall()
+        return conn.execute(query, args)
     
+
+
+
 # def addEvent(name, ...):
 #     ..
 #     query('INSERT INTO team10.events" ....')

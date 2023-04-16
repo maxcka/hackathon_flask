@@ -1,6 +1,18 @@
 from flask import Flask, render_template, request
+from db import query
+from models.events import addEvent, getEvents
 
 app = Flask(__name__)
+
+
+@app.route("/dbs")
+def dbs():
+    return getEvents()
+    return query("select * from team10.events").fetchall()
+
+@app.route("/view_events")
+def viewEvents():
+    return query("select * from team10.events").fetchall()
 
 @app.route('/')
 def index():
@@ -20,7 +32,8 @@ def filter_by_date():
 def events():
     title = 'Events'
     name = 'Events'
-    return render_template('events.html', title=title, name=name)
+    events_list = getEvents()
+    return render_template('events.html', title=title, name=name, events_list = events_list)
 
 @app.route('/search')
 def search():
@@ -34,6 +47,7 @@ def create():
     title = 'Create Event'
     name = 'Create Event'
     return render_template('create.html', title=title, name=name, error=False)
+
 
 @app.route('/process_event', methods=['POST'])
 def process_event():
@@ -51,9 +65,73 @@ def process_event():
         prev_name = prev_title
         return render_template('create.html', title=prev_title, name=name, error=error)
 
+<<<<<<< HEAD
+=======
+    new_event = addEvent(location, description, date, time, title, "Ucla")
+    #db.session.add(new_event)
+    #db.session.commit()
+
+>>>>>>> 9dbfa33d5c15dab2287185b3fb142e9119a85c8c
     # redirect after submission
     return render_template('thanks.html', title=title, location=location, date=date, time=time)
+
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/create_account")
+def create_account():
+    return render_template("createacc.html")
 
 
 if __name__ == '__main__':
     app.run()
+<<<<<<< HEAD
+=======
+
+
+#from flask import Flask
+#
+#app = Flask(__name__)
+#
+#@app.route("/")
+#def hello_world():
+#    return "<p>Hello, World!</p>"
+#
+#@app.route("/search")
+#def search(request):
+#    locations = request.args.get('location')
+#    if (locations == None):
+#        locations = ["The Hill", "Campus", "Off-Campus", "Bruinwalk"]
+#    types = request.args.get('type')
+#    if (types == None):
+#        types= ["Social Event", "Club Event", "Fundraiser", "Free Food", "Other"]
+#    
+#    from datetime import date, timedelta, time
+#    startDate = request.args.get('startDate')
+#    if(startDate == None):
+#        startDate = date.today()
+#    endDate = request.args.get('endDate')
+#    if(endDate == None):
+#        endDate = startDate + timedelta(days=10)
+#    delta = timedelta(days=1)
+#    dates = []
+#    while startDate <=endDate:
+#        dates.append(startDate)
+#        startDate += delta
+#
+#    #startTime = request.args.get('startTime')
+#    #if(startTime == None):
+#    #    startTime = datetime.time(0,0,0)
+#    # endTime = request.args.get('endTime')
+#    # if(endTime == None):
+#    #     endTime = datetime.time(23,59,59)
+#
+#    events = [] #list of json items - needs to be edited once database has been created
+#    filtered = []
+#    for event in events:
+#        if (event.location in locations and event.type in types and event.date in dates):
+#            filtered.append(event)
+#    return filtered
+
+>>>>>>> 9dbfa33d5c15dab2287185b3fb142e9119a85c8c
