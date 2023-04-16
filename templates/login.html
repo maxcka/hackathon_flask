@@ -2,18 +2,28 @@
 <html>
 <head>
     <title>Login Page</title>
+    {% include "imports.html" %}
+
 </head>
 <body>
-    <h1>Please login</h1>
-    <form method="POST" action="/login">
-        <label>Username:</label>
-        <input type="text" name="username"><br><br>
-        <label>Password:</label>
-        <input type="text" name="password"><br><br>
-        <!-- <input type="submit" value="Submit"> -->
-        <button><a href="/">Submit</a></button>
-          </form>
-    </form>
+    <div class="container">
+    </div>
+        <h1>Please login</h1>
+        <form method="POST" action="/login">
+            <label>Username:</label>
+            <input type="text" name="username"><br><br>
+            <label>Password:</label>
+            <input type="text" name="password"><br><br>
+            <!-- <input type="submit" value="Submit"> -->
+                    
+              </form>
+        </form>
+    </div>
+    </div>
+    <button class="btn btn-primary" onclick="location.href='/'">Submit</button>
+    <br>
+    <br>
+    </div>
 
     <a href="/create_account">If you have not made an account. Please click here</a>
     

@@ -2,16 +2,19 @@
 <html>
   <head>
     <title>{{ title }}</title>
+    {% include "imports.html" %}
   </head>
   <body>
-    <div style="margin-bottom: 20px;">
-      <h1>Welcome to {{ name }}!</h1>
-      <a href="/login">Login</a>
-      <a href="/create_account">Sign Up</a>
+    <div class="container">
+      <div style="margin-bottom: 20px;">
+        <h1>Welcome to {{ name }}!</h1>
+        <a href="/login">Login</a>
+        <a href="/create_account">Sign Up</a>
+      </div>
+      <button class="btn btn-primary" onclick="location.href='{{ url_for('events') }}'">Search for events</button>
+      <br>
+      <br>
+      <button class="btn btn-primary" onclick="location.href='{{ url_for('create') }}'">Create an event</button>  
     </div>
-    <button onclick="location.href='{{ url_for('events') }}'">Search for events</button>
-    <br>
-    <br>
-    <button onclick="location.href='{{ url_for('create') }}'">Create an event</button>
   </body>
 </html>
