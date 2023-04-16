@@ -1,12 +1,18 @@
 from flask import Flask, render_template, request
 from db import query
+from models.events import addEvent, getEvents
 
 app = Flask(__name__)
 
 
 @app.route("/dbs")
 def dbs():
-    return query("select * from team10.events")
+    return getEvents()
+    return query("select * from team10.events").fetchall()
+
+@app.route("/view_events")
+def viewEvents():
+    return query("select * from team10.events").fetchall()
 
 @app.route('/')
 def index():
@@ -18,7 +24,8 @@ def index():
 def events():
     title = 'Events'
     name = 'Events'
-    return render_template('events.html', title=title, name=name)
+    events_list = getEvents()
+    return render_template('events.html', title=title, name=name, events_list = events_list)
 
 @app.route('/search')
 def search():
@@ -32,6 +39,7 @@ def create():
     title = 'Create Event'
     name = 'Create Event'
     return render_template('create.html', title=title, name=name, error=False)
+
 
 @app.route('/process_event', methods=['POST'])
 def process_event():
@@ -47,8 +55,7 @@ def process_event():
         prev_name = prev_title
         return render_template('create.html', title=prev_title, name=name, error=error)
 
-    #new_event = FUNCTION(title=title, location=location,\
-    #                    date=date, time=time, description=description)
+    new_event = addEvent(location, description, date, time, title, "Ucla")
     #db.session.add(new_event)
     #db.session.commit()
 
@@ -58,6 +65,9 @@ def process_event():
 
 if __name__ == '__main__':
     app.run()
+
+
+
 #from flask import Flask
 #
 #app = Flask(__name__)
