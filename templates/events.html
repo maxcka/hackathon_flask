@@ -2,8 +2,10 @@
 <html>
   <head>
     <title>{{ title }}</title>
+    {% include "imports.html" %}
   </head>
   <body>
+    <div class="container">
     <h1>Welcome to {{ name }}!</h1>
     <form method="get" action="{{ url_for('search') }}">
       <input type="text" name="query" placeholder="Search...">
@@ -22,12 +24,19 @@
       events 
     </h1>
     {% for event in events_list %}
-      <p>{{ event.name }}</p>
-      <p>{{ event.loc }}</p>
+      <div class="container" style="background-color: #0077B6; padding: 20px; border-radius: 10px; color: white;">
+      <p>Name: <strong>{{ event.name }}</strong></p>
+      <p>Location: <strong>{{ event.loc }}</strong></p>
+      <p>Date: <strong>{{ event.date }}</strong></p>
       <p>{{ event.type }}</p>
       <p>{{ event.time }}</p>
       <p>{{ event.host }}</p>
+      </div>
       <br>
     {% endfor %}
+    </div>
+    <br>
+    <button onclick="location.href='{{ url_for('index') }}'">Back to Home</button>
+    <br>
   </body>
 </html>
