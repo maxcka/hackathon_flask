@@ -1,6 +1,12 @@
 from flask import Flask, render_template, request
+from db import query
 
 app = Flask(__name__)
+
+
+@app.route("/dbs")
+def dbs():
+    return query("select * from team10.events")
 
 @app.route('/')
 def index():
