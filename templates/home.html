@@ -4,7 +4,11 @@
     <title>{{ title }}</title>
   </head>
   <body>
-    <h1>Welcome to {{ name }}!</h1>
+    <div style="margin-bottom: 20px;">
+      <h1>Welcome to {{ name }}!</h1>
+      <a href="/login">Login</a>
+      <a href="/create_account">Sign Up</a>
+    </div>
     <button onclick="location.href='{{ url_for('events') }}'">Search for events</button>
     <br>
     <br>

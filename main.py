@@ -62,10 +62,17 @@ def process_event():
     # redirect after submission
     return render_template('thanks.html', title=title, location=location, date=date, time=time)
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
+@app.route("/create_account")
+def create_account():
+    return render_template("createacc.html")
+
 
 if __name__ == '__main__':
     app.run()
-
 
 
 #from flask import Flask
