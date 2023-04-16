@@ -2,8 +2,10 @@
 
 {% block content %}
 <p>Your event submission:</p>
+<p><strong>{{ title }}</strong></p>
+<p>at <strong>{{ location }}</strong></p>
+<p>on <strong>{{ date }}</strong> at <strong>{{ time }}</strong></p>
 <br>
-<p>{{ title }}</p>
-<p>at {{ location }}</p>
-<p>on {{ date }} at {{ time }}</p>
+<button onclick="location.href='{{ url_for('index') }}'">Back to Home</button>
+<br>
 {% endblock %}

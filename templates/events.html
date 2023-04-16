@@ -9,6 +9,15 @@
       <input type="text" name="query" placeholder="Search...">
       <button type="submit">Go</button>
     </form>
+    <form method="GET" action="{{ url_for('filter_by_date') }}">
+      <label for="start_date">Start date:</label>
+      <input type="date" id="start_date" name="start_date" required>
+    
+      <label for="end_date">End date:</label>
+      <input type="date" id="end_date" name="end_date" required>
+    
+      <input type="submit" value="Filter">
+    </form>
     <h1>
       events 
     </h1>
