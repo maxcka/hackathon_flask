@@ -40,6 +40,7 @@ def getEvents():
         events_list.append({
             "name": event[4],
             "loc": event[1],
+            "date": event[3]
 
         })
         # print(*event)
