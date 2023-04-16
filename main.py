@@ -19,7 +19,15 @@ def index():
     title = 'My Flask App'
     name = 'Home'
     return render_template('home.html', title=title, name=name)
-    
+
+@app.route('/filter_by_date', methods=['GET'])
+def filter_by_date():
+    start_date = request.args.get('start_date')
+    end_date = request.args.get('end_date')
+    filtered_data = query.filter(MyModel.date >= start_date, MyModel.date <= end_date).all()
+    return render_template('events.html', data=data)
+
+
 @app.route('/events')
 def events():
     title = 'Events'
@@ -44,6 +52,8 @@ def create():
 @app.route('/process_event', methods=['POST'])
 def process_event():
     title = request.form['title']
+    event_type = request.form['type']
+    host = request.form['host']
     location = request.form['location']
     date = request.form['date']
     time = request.form['time']
@@ -73,49 +83,3 @@ def create_account():
 
 if __name__ == '__main__':
     app.run()
-
-
-#from flask import Flask
-#
-#app = Flask(__name__)
-#
-#@app.route("/")
-#def hello_world():
-#    return "<p>Hello, World!</p>"
-#
-#@app.route("/search")
-#def search(request):
-#    locations = request.args.get('location')
-#    if (locations == None):
-#        locations = ["The Hill", "Campus", "Off-Campus", "Bruinwalk"]
-#    types = request.args.get('type')
-#    if (types == None):
-#        types= ["Social Event", "Club Event", "Fundraiser", "Free Food", "Other"]
-#    
-#    from datetime import date, timedelta, time
-#    startDate = request.args.get('startDate')
-#    if(startDate == None):
-#        startDate = date.today()
-#    endDate = request.args.get('endDate')
-#    if(endDate == None):
-#        endDate = startDate + timedelta(days=10)
-#    delta = timedelta(days=1)
-#    dates = []
-#    while startDate <=endDate:
-#        dates.append(startDate)
-#        startDate += delta
-#
-#    #startTime = request.args.get('startTime')
-#    #if(startTime == None):
-#    #    startTime = datetime.time(0,0,0)
-#    # endTime = request.args.get('endTime')
-#    # if(endTime == None):
-#    #     endTime = datetime.time(23,59,59)
-#
-#    events = [] #list of json items - needs to be edited once database has been created
-#    filtered = []
-#    for event in events:
-#        if (event.location in locations and event.type in types and event.date in dates):
-#            filtered.append(event)
-#    return filtered
-
