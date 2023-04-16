@@ -1,10 +1,17 @@
 from flask import Flask
+from db import query
 
 app = Flask(__name__)
 
 @app.route("/")
 def hello_world():
     return "<p>Hello, World!</p>"
+
+@app.route("/dbs")
+def dbs():
+    return query("select * from team10.events")
+
+
 
 @app.route("/search")
 def search(request):
