@@ -9,5 +9,16 @@
       <input type="text" name="query" placeholder="Search...">
       <button type="submit">Go</button>
     </form>
+    <h1>
+      events 
+    </h1>
+    {% for event in events_list %}
+      <p>{{ event.name }}</p>
+      <p>{{ event.loc }}</p>
+      <p>{{ event.type }}</p>
+      <p>{{ event.time }}</p>
+      <p>{{ event.host }}</p>
+      <br>
+    {% endfor %}
   </body>
 </html>
