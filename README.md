@@ -1,5 +1,7 @@
 # hackathon_flask
 
+Steps to build Website that allows for creating social events:
+
 ```bash
 python3 -m venv env
 source env/bin/activate
